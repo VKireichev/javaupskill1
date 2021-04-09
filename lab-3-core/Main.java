@@ -4,29 +4,25 @@ import java.util.regex.Pattern;
 
 public class Main {
     private static final Scanner IN = new Scanner(System.in);
+    private static final String USAGE =
+            "Enter arithmetic expression: 'a + b' 'a - b' 'a * b' 'a / b' 'a !';  where a and b are integer numbers.";
     private static int number1;
     private static int number2;
     private static String operation;
-    private static final String USAGE =
-            "Enter arithmetic expression: 'a + b' 'a - b' 'a * b' 'a / b' 'a !';  where a and b are integer numbers.";
 
     private static long plus() {
-        return (long)number1 + number2;
+        return (long) number1 + number2;
     }
 
     private static long minus() {
-        return (long)number1 - number2;
+        return (long) number1 - number2;
     }
 
-    private static long mult() {
-        return (long)number1 * number2;
+    private static long multiply() {
+        return (long) number1 * number2;
     }
 
-    private static long divide() {
-        return number1 / number2;
-    }
-
-    private static long fact() {
+    private static long factorial() {
         long res = 1;
         for (int i = 2; i <= number1; i++) {
             res *= i;
@@ -49,29 +45,21 @@ public class Main {
 
             // Execute operation and print result.
             switch (operation) {
-                case "+":
-                    System.out.println(plus());
-                    break;
-                case "-":
-                    System.out.println(minus());
-                    break;
-                case "*":
-                    System.out.println(mult());
-                    break;
-                case "/":
-                    if (number2 == 0) {
-                        System.out.println("Error.Division by zero! ");
-                        break;
-                    }
-                    System.out.println(divide());
-                    break;
-                case "!":
-                    System.out.println(fact());
-                    break;
-                default:
-                    System.out.println("Invalid operation.");
+                case "+" -> System.out.println(plus());
+                case "-" -> System.out.println(minus());
+                case "*" -> System.out.println(multiply());
+                case "/" -> System.out.println(divideWithCheckingZero());
+                case "!" -> System.out.println(factorial());
+                default -> System.out.println("Invalid operation.");
             }
         }
+    }
+
+    private static String divideWithCheckingZero() {
+        if (number2 == 0) {
+            return "Error.Division by zero! ";
+        }
+        return Long.toString(number1 / number2);
     }
 
     private static Status readLine() {
@@ -109,7 +97,7 @@ public class Main {
     }
 
     private enum Status {
-       OK, WRONG_INPUT, EXIT
+        OK, WRONG_INPUT, EXIT
     }
 }
      
