@@ -1,111 +1,116 @@
-import java.io.*;
-import java.util.*;
 import java.util.Scanner;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
-   private static Scanner in = new Scanner(System.in); 
-   private static int number1, number2;
-   private static String operation;
-   private static String usage = 
-      "Enter arithmetic expression: 'a + b' 'a - b' 'a * b' 'a / b' 'a !';  where a and b are integer numbers.";
-                                                                                             
-   private static long plus(int number1,  int number2) {
-      return (number1 + number2);
-   }
-   private static long minus(int number1,  int number2) {
-      return (number1 - number2);
-   }
-   private static long mult(int number1,  int number2) {
-      return (number1 * number2);
-   }
-   private static long devide(int number1,  int number2) {
-      return (number1 / number2);
-   }
-   private static long fact(int number) {
-      long res = 1;
-      for (int i = 2; i <= number; i++) {
-         res *= i;
-      }
-      return res;
-   }
+    private static final Scanner IN = new Scanner(System.in);
+    private static int number1;
+    private static int number2;
+    private static String operation;
+    private static final String USAGE =
+            "Enter arithmetic expression: 'a + b' 'a - b' 'a * b' 'a / b' 'a !';  where a and b are integer numbers.";
 
-   public static void main(String[] args) {
+    private static long plus() {
+        return (long)number1 + number2;
+    }
 
-      System.out.println(usage);
-      while(true) {
-         // Read user input line and parse it. 
-         int nOfTokens = readLine();
-         if (nOfTokens == -1) {                        // EXIT sign
-            return;
-         }
-         if (nOfTokens != 0) {                         // Wrong input
-            continue;
-         }
+    private static long minus() {
+        return (long)number1 - number2;
+    }
 
-         // Execute operation and print result.
-         switch(operation) {
-            case "+":
-               System.out.println(plus(number1, number2));
-               break;
-            case "-":
-               System.out.println(minus(number1, number2));
-               break;
-            case "*":
-               System.out.println(mult(number1, number2));
-               break;
-            case "/":
-               if (number2 == 0) {
-                  System.out.println("Error.Division by zero! ");
-                  break;
-               }
-               System.out.println(devide(number1, number2));
-               break;
-            case "!":
-               System.out.println(fact(number1));
-               break;
-            default:
-               System.out.println("Invalid operation.");
-         }
-      }
-   } 
+    private static long mult() {
+        return (long)number1 * number2;
+    }
 
-   private static int readLine() {
-      String inputString = "";
-      Pattern expression;
-      Matcher matcher;
-      
-      try {
-         expression = Pattern.compile("(-?[0-9]+) *([*+-/!]) *(-?[0-9]*) *");  // pattern: number1 operation [number2] 
-         while ("".equals(inputString)) {       // Read non empty input line.	        
-            System.out.print(":> ");            // Print a prompt  
-            inputString = in.nextLine();
-         }
-         if ("q".equals(inputString)) {         // EXIT sign
-            return -1;
-         }
-         matcher = expression.matcher(inputString);
-         if (matcher.find()) {                  // Pattern is found. Extract operation and numbers
-            operation = matcher.group(2);
-            number1   = new Integer(matcher.group(1));
-            if ( ! "!".equals(operation) ) {
-               number2   = new Integer(matcher.group(3));
-            } 
-            return 0;                            // Return OK.
-         }            
-         System.out.println(usage);
-         return 1;                               // Wrong input sign
-      }
-      catch (NumberFormatException e) {
-         System.out.println("Invalid Number");
-         return 1;                               // Wrong input
-      }
-      catch (Exception e) {
-         System.out.println("Internal error");
-         return -1;                              // Exit
-      }
-   }
+    private static long divide() {
+        return number1 / number2;
+    }
 
+    private static long fact() {
+        long res = 1;
+        for (int i = 2; i <= number1; i++) {
+            res *= i;
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(USAGE);
+        while (true) {
+            // Read user input line and parse it.
+            Status nOfTokens = readLine();
+            if (nOfTokens == Status.EXIT) {                        // EXIT sign
+                return;
+            }
+            if (nOfTokens == Status.WRONG_INPUT) {                         // Wrong input
+                continue;
+            }
+
+            // Execute operation and print result.
+            switch (operation) {
+                case "+":
+                    System.out.println(plus());
+                    break;
+                case "-":
+                    System.out.println(minus());
+                    break;
+                case "*":
+                    System.out.println(mult());
+                    break;
+                case "/":
+                    if (number2 == 0) {
+                        System.out.println("Error.Division by zero! ");
+                        break;
+                    }
+                    System.out.println(divide());
+                    break;
+                case "!":
+                    System.out.println(fact());
+                    break;
+                default:
+                    System.out.println("Invalid operation.");
+            }
+        }
+    }
+
+    private static Status readLine() {
+        String inputString = "";
+        Pattern expression;
+        Matcher matcher;
+
+        try {
+            expression = Pattern.compile("(-?[0-9]+) *([*+-/!]) *(-?[0-9]*) *");  // pattern: number1 operation [number2]
+            while ("".equals(inputString)) {       // Read non empty input line.
+                System.out.print(":> ");            // Print a prompt
+                inputString = IN.nextLine();
+            }
+            if ("q".equals(inputString)) {         // EXIT sign
+                return Status.EXIT;
+            }
+            matcher = expression.matcher(inputString);
+            if (matcher.find()) {                  // Pattern is found. Extract operation and numbers
+                operation = matcher.group(2);
+                number1 = Integer.parseInt(matcher.group(1));
+                if (!"!".equals(operation)) {
+                    number2 = Integer.parseInt(matcher.group(3));
+                }
+                return Status.OK;                            // Return OK.
+            }
+            System.out.println(USAGE);
+            return Status.WRONG_INPUT;                               // Wrong input sign
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Number");
+            return Status.WRONG_INPUT;                               // Wrong input
+        } catch (Exception e) {
+            System.out.println("Internal error");
+            return Status.EXIT;                              // Exit
+        }
+    }
+
+    private enum Status {
+       OK, WRONG_INPUT, EXIT
+    }
 }
      
                          
