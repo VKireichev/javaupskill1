@@ -6,7 +6,7 @@ public class Journal {
     private List<Operation> operations;
 
     public Journal() {
-        operations = new ArrayList<Operation>();
+        operations = new ArrayList<>();
     }
 
     public List<Operation> getOperations() {

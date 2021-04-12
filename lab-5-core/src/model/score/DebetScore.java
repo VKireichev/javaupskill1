@@ -3,8 +3,6 @@ package model.score;
 import model.account.Account;
 import model.money.Money;
 
-import java.util.Map;
-
 public class DebetScore extends Score {
 
     public DebetScore(Money balans, Account owner, Integer number) {
@@ -30,7 +28,7 @@ public class DebetScore extends Score {
     }
 
     private boolean isLargeCredit(Account owner) {
-        for (Score score : owner.getScoreMap()) {
+        for (Score score : owner.getScoreMap().values()) {
             if (score.getBalance().getValue() < -20000) {
                 return true;
             }

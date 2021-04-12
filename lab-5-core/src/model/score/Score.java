@@ -9,7 +9,7 @@ public abstract class Score implements MoneyInterface {
     private Account owner;
     private Integer number;
 
-    public Score(Money balance, Account owner, Integer number) {
+    protected Score(Money balance, Account owner, Integer number) {
         this.balance = balance;
         this.owner = owner;
         this.number = number;
