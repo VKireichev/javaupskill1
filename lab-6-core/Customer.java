@@ -20,7 +20,7 @@ public class Customer {
         String productName = purchase.getProductName();
         int cost = purchase.getProductCost();
         int count = purchase.getProductCount();
-        purchases.putIfAbsent(productName, new CostCount(cost, count));
+        purchases.put(productName, new CostCount(cost, count));
         return true;
     }
 
