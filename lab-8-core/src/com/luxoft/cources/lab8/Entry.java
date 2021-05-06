@@ -1,5 +1,7 @@
+package com.luxoft.cources.lab8;
+
 public class Entry<K, V> {
-    private K key;
+    private final K key;
     private V value;
 
     public Entry(K key, V value) {
@@ -11,16 +13,12 @@ public class Entry<K, V> {
         return key;
     }
 
-    public void setKey(K key) {
-        this.key = key;
-    }
-
     public V getValue() {
         return value;
     }
 
     public V setValue(V value) {
-        V oldValue = this.value;
+        var oldValue = this.value;
         this.value = value;
         return oldValue;
     }
