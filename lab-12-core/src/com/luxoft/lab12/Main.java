@@ -1,5 +1,4 @@
-import java.util.LinkedHashMap;
-import java.util.List;
+package com.luxoft.lab12;
 
 public class Main {
 
@@ -19,7 +18,7 @@ public class Main {
             dao.addProduct(product4);
             dao.addProduct(product5);
             dao.addProduct(product6);
-        } catch (Exception e) {
+        } catch (ProductDAO.ProductException e) {
             e.printStackTrace();
         }
 
@@ -31,7 +30,7 @@ public class Main {
             dao.setProduct(product1);
             dao.setProduct(product3);
             dao.setProduct(product5);
-        } catch (Exception e) {
+        } catch (ProductDAO.ProductException e) {
             e.printStackTrace();
         }
 
@@ -42,7 +41,7 @@ public class Main {
             System.out.println(dao.getProductById(4));
             System.out.println(dao.getProductById(5));
             System.out.println(dao.getProductById(6));
-        } catch (Exception e) {
+        } catch (ProductDAO.ProductException e) {
             e.printStackTrace();
         }
 

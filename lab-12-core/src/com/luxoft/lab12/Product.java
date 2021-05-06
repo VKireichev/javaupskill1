@@ -1,6 +1,8 @@
+package com.luxoft.lab12;
+
 public class Product {
 
-    private int id;
+    private final int id;
     private String description;
     private float rate;
     private int quantity;
@@ -14,10 +16,6 @@ public class Product {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getDescription() {
