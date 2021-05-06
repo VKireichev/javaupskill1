@@ -3,7 +3,6 @@ package ws;
 import ws.echo.Echo;
 
 import javax.xml.namespace.QName;
-import javax.xml.ws.Holder;
 import javax.xml.ws.Service;
 import java.net.URL;
 
