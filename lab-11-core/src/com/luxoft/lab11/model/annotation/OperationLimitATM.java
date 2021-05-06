@@ -1,4 +1,4 @@
-package model.annotation;
+package com.luxoft.lab11.model.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

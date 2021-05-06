@@ -1,11 +1,11 @@
-package model.money;
+package com.luxoft.lab11.model.money;
 
 public class Money {
     private Currency currency;
     private double value;
 
     public Money(double value, String currencyName) {
-            this.value = value;
+        this.value = value;
         this.currency = new Currency(currencyName, 65.5f);
     }
 

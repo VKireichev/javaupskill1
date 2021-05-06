@@ -1,8 +1,7 @@
-package model.score;
+package com.luxoft.lab11.model.score;
 
-import model.account.Account;
-import model.money.Money;
-import model.annotation.*;
+import com.luxoft.lab11.model.account.Account;
+import com.luxoft.lab11.model.money.Money;
 
 public class CurrentScore extends Score {
 

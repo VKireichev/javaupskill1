@@ -1,6 +1,6 @@
-package model.account;
+package com.luxoft.lab11.model.account;
 
-import model.score.Score;
+import com.luxoft.lab11.model.score.Score;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +22,12 @@ public class Account {
         return scoreMap;
     }
 
-    public void addScore(Score score) { scoreMap.put(score.getNumber(), score); }
-
     public void setScoreMap(Map<Integer, Score> scoreMap) {
         this.scoreMap = scoreMap;
+    }
+
+    public void addScore(Score score) {
+        scoreMap.put(score.getNumber(), score);
     }
 
     public Principal getPrincipal() {

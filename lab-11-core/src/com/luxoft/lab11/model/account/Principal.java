@@ -1,4 +1,4 @@
-package model.account;
+package com.luxoft.lab11.model.account;
 
 public class Principal {
     private String firstName;

@@ -1,16 +1,13 @@
-package model.score;
+package com.luxoft.lab11.model.score;
 
-import model.account.Account;
-import model.money.Money;
-import model.annotation.*;
-import java.lang.reflect.Method;
-import java.lang.annotation.Annotation;
+import com.luxoft.lab11.model.account.Account;
+import com.luxoft.lab11.model.money.Money;
 
 
-public class DebetScore extends Score {
+public class DebitScore extends Score {
 
-    public DebetScore(Money balans, Account owner, Integer number) {
-        super(balans, owner, number);
+    public DebitScore(Money balance, Account owner, Integer number) {
+        super(balance, owner, number);
     }
 
     @Override
